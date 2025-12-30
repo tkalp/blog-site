@@ -1,0 +1,80 @@
+---
+import Nav from "../components/Nav.astro";
+
+const { title, description } = Astro.props;
+
+const siteName = "Teddy Kalp";
+const siteURL = "https://devopsteddy.com";
+
+const fullTitle = title
+  ? `${title} — Teddy Kalp`
+  : "Teddy Kalp — Systems & Full-Stack Engineer";
+
+const metaDescription =
+  description ??
+  "Senior-scope software engineer focused on systems, data pipelines, cloud architecture, and security-first design.";
+
+const canonicalURL = Astro.url?.href;
+const ogImage = `${siteURL}/og-default.png`; // optional but recommended
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Primary SEO -->
+    <title>{fullTitle}</title>
+    <meta name="description" content={metaDescription} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Theme -->
+    <meta name="theme-color" content="#0b1220" />
+    <link rel="icon" href="/favicon.svg" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={metaDescription} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={ogImage} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={metaDescription} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Robots -->
+    <meta name="robots" content="index, follow" />
+  </head>
+
+  <body>
+    <style is:global>@import "../styles/global.css";</style>
+
+    <div class="container">
+      <Nav currentPath={Astro.url.pathname} />
+
+      <main>
+        <slot />
+      </main>
+
+      <hr />
+
+      <footer
+        class="kicker"
+        style="display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;"
+      >
+        <span>© {new Date().getFullYear()} Teddy Kalp</span>
+        <span>
+          <a href="https://github.com/" target="_blank" rel="noreferrer">GitHub</a>
+          {" · "}
+          <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn</a>
+          {" · "}
+          <a href="mailto:teddy.kalp@gmail.com">teddy.kalp@gmail.com</a>
+        </span>
+      </footer>
+    </div>
+  </body>
+</html>

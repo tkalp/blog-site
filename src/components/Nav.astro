@@ -1,0 +1,27 @@
+---
+const links = [
+  { href: "/", label: "Home" },
+  { href: "/writing", label: "Writing" },
+  { href: "/projects", label: "Projects" },
+  { href: "/resume", label: "Resume" },
+];
+const { currentPath = "" } = Astro.props;
+---
+
+<nav style="display:flex; align-items:center; justify-content:space-between; gap:12px; padding: 10px 0;">
+  <a class="badge" href="/" aria-label="Home">
+    <span style="width:8px;height:8px;border-radius:50%;background:var(--accent-primary);display:inline-block;box-shadow:0 0 8px var(--accent-primary-glow);"></span>
+    Teddy Kalp
+  </a>
+
+  <div style="display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end;">
+    {links.map(l => (
+      <a
+        class={currentPath === l.href ? "btn active" : "btn"}
+        href={l.href}
+      >
+        {l.label}
+      </a>
+    ))}
+  </div>
+</nav>

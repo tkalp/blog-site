@@ -1,0 +1,52 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+// Manually list posts until we migrate to content collections
+const posts = [
+  {
+    title: "Designing a Financial Market Data Pipeline",
+    description: "EOD ingestion, corporate actions, golden prices, and deterministic recomputation.",
+    pubDate: "2025-12-30",
+    tags: ["Systems Design", "Data Pipelines", "Python"],
+    slug: "financial-market-data-pipeline"
+  }
+];
+---
+
+<BaseLayout
+  title="Writing"
+  description="Decision-driven engineering write-ups on systems design, data pipelines, and production tradeoffs."
+>
+  <header>
+    <h1 class="h1">Writing</h1>
+    <p class="p" style="max-width: 70ch;">
+      I write about designing and operating production systems under real-world constraints.
+      The focus is on correctness, tradeoffs, and architectural judgment — not tutorials or hype.
+    </p>
+  </header>
+
+  <hr />
+
+  <section class="grid" style="margin-top: 18px;">
+    {posts.length === 0 && (
+      <p class="p">No posts published yet.</p>
+    )}
+
+    {posts.map(post => (
+      <a class="card" href={`/writing/${post.slug}`}>
+        <div class="kicker">
+          {post.pubDate}
+          {post.tags?.length ? ` · ${post.tags.join(" · ")}` : ""}
+        </div>
+
+        <h2 class="h2" style="margin-top: 10px;">
+          {post.title}
+        </h2>
+
+        <p class="p">
+          {post.description}
+        </p>
+      </a>
+    ))}
+  </section>
+</BaseLayout>

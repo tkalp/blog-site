@@ -1,0 +1,48 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Home">
+  <div class="card">
+    <div class="kicker">Senior Software Engineer</div>
+    <h1 class="h1">Building production systems and data pipelines where correctness matters.</h1>
+    <p class="p">
+      I specialize in systems where data accuracy and operational reliability outweigh raw speed. 
+      You'll find detailed technical write-ups, architectural decisions with real tradeoffs, and working implementations 
+      that demonstrate production-grade thinking — not just toy examples.
+    </p>
+
+    <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
+      <a class="btn" href="/writing">Read the writing</a>
+      <a class="btn" href="/projects">View projects</a>
+      <a class="btn" href="/resume">Resume</a>
+    </div>
+  </div>
+
+  <h2 class="h2" style="margin-top:22px;">Featured</h2>
+
+  <div class="grid grid-2">
+    <a class="card" href="/writing/financial-market-data-pipeline">
+      <div class="badge">Flagship</div>
+      <h3 class="h2" style="margin-top:10px;">Designing a Financial Market Data Pipeline</h3>
+      <p class="p">Multi-vendor EOD ingestion with immutable storage, golden price selection, and deterministic corporate action adjustments. Built for correctness and auditability over latency.</p>
+    </a>
+
+    <a class="card" href="/projects">
+      <div class="badge">Case Studies</div>
+      <h3 class="h2" style="margin-top:10px;">Production Systems Work</h3>
+      <p class="p">Real-world engineering: data pipeline architecture, batch processing patterns, and operational design decisions under constraints.</p>
+    </a>
+  </div>
+
+  <hr />
+
+  <div class="card">
+    <div class="kicker">Now</div>
+    <p class="p">
+      Currently building public engineering artifacts that demonstrate senior+ systems thinking: 
+      technical write-ups on data pipeline design, production tradeoff analysis, and architectural patterns that prioritize correctness. 
+      Open to staff-level roles focused on data infrastructure, systems design, or platform engineering.
+    </p>
+  </div>
+</BaseLayout>

@@ -1,0 +1,72 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+const { title, description, pubDate, tags = [] } = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  <article>
+    <div class="kicker">
+      {pubDate} {tags.length ? `· ${tags.join(" · ")}` : ""}
+    </div>
+
+    <h1 class="h1">{title}</h1>
+    <p class="p" style="margin-top:10px; max-width: 75ch;">{description}</p>
+
+    <hr />
+
+    <div style="max-width: 110ch;">
+      <slot />
+    </div>
+  </article>
+
+  <script is:inline type="module">
+    // Render Mermaid code blocks (```mermaid) as diagrams
+    const runMermaid = async () => {
+      const blocks = document.querySelectorAll('pre > code.language-mermaid');
+      if (!blocks.length) return;
+
+      const { default: mermaid } = await import(
+        "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs"
+      );
+
+      mermaid.initialize({
+        startOnLoad: false,
+        theme: "dark",
+        themeVariables: {
+          primaryColor: "#5eead4",
+          primaryTextColor: "#e6edf6",
+          primaryBorderColor: "#3dd5bd",
+          lineColor: "#60a5fa",
+          secondaryColor: "#60a5fa",
+          tertiaryColor: "#a78bfa",
+          background: "#0b1220",
+          mainBkg: "#0f1a2e",
+          secondBkg: "#070d16",
+          textColor: "#e6edf6",
+          fontSize: "16px",
+        },
+      });
+
+      // Replace each mermaid code block with a <div class="mermaid">...</div>
+      for (const codeEl of blocks) {
+        const pre = codeEl.closest("pre");
+        if (!pre) continue;
+
+        const div = document.createElement("div");
+        div.className = "mermaid";
+        div.textContent = codeEl.textContent ?? "";
+
+        pre.replaceWith(div);
+      }
+
+      // Render diagrams
+      await mermaid.run({ querySelector: ".mermaid" });
+    };
+
+    // Run on initial load
+    runMermaid();
+
+    // If you ever add view transitions / client routing later, this keeps it working
+    document.addEventListener("astro:page-load", runMermaid);
+  </script>
+</BaseLayout>

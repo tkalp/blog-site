@@ -1,0 +1,25 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Resume">
+  <h1 class="h1">Resume</h1>
+  <p class="p">Download the PDF and skim the highlights.</p>
+
+  <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
+    <a class="btn" href="/resume.pdf" download>Download resume.pdf</a>
+    <a class="btn" href="mailto:teddy.kalp@gmail.com">Email me</a>
+  </div>
+
+  <div class="card" style="margin-top:18px;">
+    <div class="kicker">Embed</div>
+    <p class="p">Put your resume at <code>public/resume.pdf</code> to enable embedding below.</p>
+    <div style="margin-top:14px;">
+      <iframe
+        src="/resume.pdf"
+        title="Resume PDF"
+        style="width:100%; height:900px; border:1px solid var(--line); border-radius: 14px;"
+      />
+    </div>
+  </div>
+</BaseLayout>

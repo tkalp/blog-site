@@ -1,0 +1,37 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const projects = [
+  {
+    title: "Financial Market Data Pipeline",
+    desc: "EOD ingestion + corporate actions + golden prices with deterministic recomputation.",
+    links: [
+      { label: "Write-up", href: "/writing/financial-market-data-pipeline" },
+      { label: "GitHub", href: "https://github.com/tkalp/fin-eod-pipeline" },
+    ],
+    tags: ["Python", "SQLite", "Data pipelines"],
+  },
+];
+---
+
+<BaseLayout title="Projects">
+  <h1 class="h1">Projects</h1>
+  <p class="p">A small set of artifacts I’m proud of. Proof over volume.</p>
+
+  <div class="grid" style="margin-top:18px;">
+    {projects.map(p => (
+      <div class="card">
+        <div class="kicker">{p.tags.join(" · ")}</div>
+        <h2 class="h2" style="margin-top:10px;">{p.title}</h2>
+        <p class="p">{p.desc}</p>
+        <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+          {p.links.map(l => (
+            <a class="btn" href={l.href} target={l.href.startsWith("http") ? "_blank" : undefined} rel="noreferrer">
+              {l.label}
+            </a>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+</BaseLayout>
