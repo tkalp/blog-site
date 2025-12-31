@@ -1,0 +1,58 @@
+---
+// Scroll-triggered reveal animations
+---
+
+<style>
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+</style>
+
+<script>
+  function initScrollReveal() {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          // Optional: stop observing after reveal
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+    
+    // Auto-add reveal class to cards, headings, and paragraphs
+    const elements = document.querySelectorAll('.card, article h2, article h3, .grid > *');
+    elements.forEach((el, index) => {
+      if (!el.classList.contains('reveal')) {
+        el.classList.add('reveal');
+        
+        // Add staggered delay for grid items
+        if (el.parentElement?.classList.contains('grid')) {
+          el.classList.add(`reveal-delay-${Math.min(index % 4 + 1, 4)}`);
+        }
+      }
+      observer.observe(el);
+    });
+  }
+  
+  // Initialize
+  document.addEventListener('DOMContentLoaded', initScrollReveal);
+  document.addEventListener('astro:after-swap', initScrollReveal);
+</script>

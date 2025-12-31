@@ -3,21 +3,51 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout title="Home">
-  <div class="card">
-    <div class="kicker">Senior Software Engineer</div>
-    <h1 class="h1">Building production systems and data pipelines where correctness matters.</h1>
-    <p class="p">
-      I specialize in systems where data accuracy and operational reliability outweigh raw speed. 
-      You'll find detailed technical write-ups, architectural decisions with real tradeoffs, and working implementations 
-      that demonstrate production-grade thinking — not just toy examples.
-    </p>
-
-    <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
-      <a class="btn" href="/writing">Read the writing</a>
-      <a class="btn" href="/projects">View projects</a>
-      <a class="btn" href="/resume">Resume</a>
+  <section class="hero">
+    <div class="hero-background">
+      <div class="grid-lines"></div>
+      <div class="gradient-orb gradient-orb-1"></div>
+      <div class="gradient-orb gradient-orb-2"></div>
     </div>
-  </div>
+    
+    <div class="hero-content">
+      <div class="kicker" style="margin-bottom: 16px;">Senior Software Engineer</div>
+      <h1 class="hero-title">
+        Building production systems and data pipelines where <span class="highlight">correctness matters</span>.
+      </h1>
+      <p class="hero-description">
+        I specialize in systems where data accuracy and operational reliability outweigh raw speed. 
+        You'll find detailed technical write-ups, architectural decisions with real tradeoffs, and working implementations 
+        that demonstrate production-grade thinking — not just toy examples.
+      </p>
+
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="/writing">
+          <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          </svg>
+          Read the writing
+        </a>
+        <a class="btn" href="/projects">View projects</a>
+        <a class="btn" href="/resume">Resume</a>
+      </div>
+      
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-value">100%</div>
+          <div class="stat-label">Correctness-first</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">Multi-vendor</div>
+          <div class="stat-label">Data ingestion</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">Deterministic</div>
+          <div class="stat-label">Recomputation</div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <h2 class="h2" style="margin-top:22px;">Featured</h2>
 
@@ -27,6 +57,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       <h3 class="h2" style="margin-top:10px;">Designing a Financial Market Data Pipeline</h3>
       <p class="p">Multi-vendor EOD ingestion with immutable storage, golden price selection, and deterministic corporate action adjustments. Built for correctness and auditability over latency.</p>
     </a>
+
 
     <a class="card" href="/projects">
       <div class="badge">Case Studies</div>
@@ -46,3 +77,189 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     </p>
   </div>
 </BaseLayout>
+
+<style>
+  .hero {
+    position: relative;
+    padding: 60px 0 80px;
+    margin: 20px -18px 40px;
+    overflow: hidden;
+  }
+
+  @media (min-width: 820px) {
+    .hero {
+      padding: 100px 0 120px;
+      margin: 30px -18px 40px;
+    }
+  }
+
+  .hero-background {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .grid-lines {
+    position: absolute;
+    inset: 0;
+    background-image: 
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 50px 50px;
+    mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+    animation: grid-drift 20s linear infinite;
+  }
+
+  @keyframes grid-drift {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(50px);
+    }
+  }
+
+  .gradient-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.4;
+    animation: float 8s ease-in-out infinite;
+  }
+
+  .gradient-orb-1 {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, var(--accent-primary) 0%, transparent 70%);
+    top: -200px;
+    left: -100px;
+  }
+
+  .gradient-orb-2 {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, var(--accent-secondary) 0%, transparent 70%);
+    bottom: -150px;
+    right: -50px;
+    animation-delay: -4s;
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0) scale(1);
+    }
+    50% {
+      transform: translateY(-30px) scale(1.1);
+    }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 18px;
+  }
+
+  .hero-title {
+    font-size: clamp(32px, 5vw, 56px);
+    line-height: 1.1;
+    margin: 0 0 24px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .highlight {
+    background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+    display: inline-block;
+  }
+
+  .highlight::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -4px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+    border-radius: 2px;
+    opacity: 0.6;
+  }
+
+  .hero-description {
+    font-size: clamp(16px, 2vw, 18px);
+    line-height: 1.7;
+    color: var(--text-muted);
+    max-width: 75ch;
+    margin: 0 0 32px;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 48px;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    border-color: var(--accent-primary);
+    color: var(--bg);
+    font-weight: 600;
+    box-shadow: 0 0 20px var(--accent-primary-glow);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px var(--accent-primary-glow);
+    color: var(--bg);
+  }
+
+  .btn svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 40px;
+    padding: 24px 0;
+    border-top: 1px solid var(--line);
+    flex-wrap: wrap;
+  }
+
+  .stat {
+    flex: 1;
+    min-width: 150px;
+  }
+
+  .stat-value {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--accent-primary);
+    margin-bottom: 4px;
+    font-family: ui-monospace, monospace;
+  }
+
+  .stat-label {
+    font-size: 13px;
+    color: var(--text-subtle);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+  }
+
+  @media (max-width: 820px) {
+    .hero-stats {
+      gap: 24px;
+    }
+    
+    .stat {
+      min-width: 120px;
+    }
+  }
+</style>

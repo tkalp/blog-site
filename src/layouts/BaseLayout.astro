@@ -1,5 +1,9 @@
 ---
 import Nav from "../components/Nav.astro";
+import CursorGlow from "../components/CursorGlow.astro";
+import CardTilt from "../components/CardTilt.astro";
+import ScrollReveal from "../components/ScrollReveal.astro";
+import { ViewTransitions } from 'astro:transitions';
 
 const { title, description } = Astro.props;
 
@@ -48,10 +52,14 @@ const ogImage = `${siteURL}/og-default.png`; // optional but recommended
 
     <!-- Robots -->
     <meta name="robots" content="index, follow" />
+    
+    <ViewTransitions />
   </head>
 
   <body>
     <style is:global>@import "../styles/global.css";</style>
+    
+    <CursorGlow />
 
     <div class="container">
       <Nav currentPath={Astro.url.pathname} />
@@ -76,5 +84,8 @@ const ogImage = `${siteURL}/og-default.png`; // optional but recommended
         </span>
       </footer>
     </div>
+    
+    <CardTilt />
+    <ScrollReveal />
   </body>
 </html>

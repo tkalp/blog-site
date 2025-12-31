@@ -1,0 +1,49 @@
+---
+// Add 3D tilt effect to cards on mouse move
+---
+
+<script>
+  function initCardTilts() {
+    const cards = document.querySelectorAll('.card');
+    
+    cards.forEach((card) => {
+      const cardElement = card as HTMLElement;
+      
+      cardElement.addEventListener('mousemove', (e) => {
+        const rect = cardElement.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        const rotateX = ((y - centerY) / centerY) * -5;
+        const rotateY = ((x - centerX) / centerX) * 5;
+        
+        cardElement.style.transform = `
+          translateY(-4px) 
+          scale(1.01) 
+          perspective(1000px) 
+          rotateX(${rotateX}deg) 
+          rotateY(${rotateY}deg)
+        `;
+        
+        // Update spotlight position
+        const percentX = (x / rect.width) * 100;
+        const percentY = (y / rect.height) * 100;
+        cardElement.style.setProperty('--mouse-x', `${percentX}%`);
+        cardElement.style.setProperty('--mouse-y', `${percentY}%`);
+      });
+      
+      cardElement.addEventListener('mouseleave', () => {
+        cardElement.style.transform = '';
+        cardElement.style.removeProperty('--mouse-x');
+        cardElement.style.removeProperty('--mouse-y');
+      });
+    });
+  }
+  
+  // Initialize on load and after navigation
+  document.addEventListener('DOMContentLoaded', initCardTilts);
+  document.addEventListener('astro:after-swap', initCardTilts);
+</script>

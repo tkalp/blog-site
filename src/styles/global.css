@@ -95,13 +95,39 @@ a:hover{
   border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: 18px;
-  transition: all 0.3s ease;
+  transition: all 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    var(--accent-primary-subtle),
+    transparent 40%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.card:hover::before {
+  opacity: 1;
 }
 
 .card:hover{
-  border-color: var(--line-strong);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
+  border-color: var(--accent-primary-glow);
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 
+    var(--shadow-md),
+    0 0 40px var(--accent-primary-glow);
 }
 
 .grid{
@@ -431,4 +457,45 @@ pre code{
   padding: 20px;
   margin: 2em 0;
   box-shadow: var(--shadow-md);
+}
+
+/* View Transitions */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes slide-from-right {
+  from {
+    transform: translateX(30px);
+  }
+}
+
+@keyframes slide-to-left {
+  to {
+    transform: translateX(-30px);
+  }
+}
+
+::view-transition-old(root) {
+  animation: 180ms cubic-bezier(0.4, 0, 1, 1) both fade-out,
+             300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-to-left;
+}
+
+::view-transition-new(root) {
+  animation: 320ms cubic-bezier(0, 0, 0.2, 1) 90ms both fade-in,
+             300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-right;
+}
+
+/* Dark mode forced (already is, but explicit for transitions) */
+::view-transition-old(root),
+::view-transition-new(root) {
+  background: var(--bg);
 }
