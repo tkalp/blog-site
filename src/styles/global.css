@@ -54,9 +54,47 @@
   --radius-sm: 10px;
   --radius-lg: 20px;
   
-  /* Shadows & glows */
+  /* Systematic Spacing Scale (4px base) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --space-10: 128px;
+  
+  /* Typography Scale */
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-base: 16px;
+  --text-lg: 18px;
+  --text-xl: 20px;
+  --text-2xl: 24px;
+  --text-3xl: 32px;
+  --text-4xl: 48px;
+  --text-5xl: 64px;
+  
+  /* Font Weights */
+  --weight-normal: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  
+  /* Line Heights */
+  --leading-tight: 1.1;
+  --leading-snug: 1.4;
+  --leading-normal: 1.6;
+  --leading-relaxed: 1.75;
+  
+  /* Elevation System */
+  --shadow-none: none;
   --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
   --shadow-md: 0 4px 12px rgba(0,0,0,0.4);
+  --shadow-lg: 0 8px 24px rgba(0,0,0,0.5);
+  --shadow-primary: 0 0 1px rgba(94,234,212,0.2);
   --glow-primary: 0 0 20px var(--accent-primary-glow);
   --glow-secondary: 0 0 20px var(--accent-secondary-glow);
 }
@@ -83,20 +121,25 @@ a:hover{
   color: var(--accent-primary-dim); 
   text-decoration: underline; 
 }
+a:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
 
 .container{
   max-width: var(--max);
   margin: 0 auto;
-  padding: 28px 18px;
+  padding: var(--space-6) var(--space-4);
 }
 
 .card{
   background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
   border: 1px solid var(--line);
+  border-left: 2px solid transparent;
   border-radius: var(--radius);
-  padding: 18px;
-  transition: all 0.1s cubic-bezier(0.4, 0, 0.2, 1);
-  transform-style: preserve-3d;
+  padding: var(--space-4);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
 }
@@ -132,7 +175,7 @@ a:hover{
 
 .grid{
   display: grid;
-  gap: 14px;
+  gap: var(--space-4);
 }
 
 .grid-2{
@@ -144,17 +187,17 @@ a:hover{
 
 .kicker{ 
   color: var(--text-muted); 
-  font-size: 14px; 
-  font-weight: 500; 
+  font-size: var(--text-sm); 
+  font-weight: var(--weight-medium); 
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
 
 .h1{ 
-  font-size: 38px; 
-  line-height: 1.1; 
-  margin: 10px 0 12px; 
-  font-weight: 700;
+  font-size: var(--text-4xl); 
+  line-height: var(--leading-tight); 
+  margin: var(--space-3) 0 var(--space-4); 
+  font-weight: var(--weight-bold);
   background: linear-gradient(135deg, var(--text) 0%, var(--accent-primary) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -162,16 +205,18 @@ a:hover{
 }
 
 .h2{ 
-  font-size: 20px; 
-  margin: 0 0 8px; 
-  font-weight: 600;
+  font-size: var(--text-xl); 
+  margin: 0 0 var(--space-2); 
+  font-weight: var(--weight-semibold);
   color: var(--text);
+  line-height: var(--leading-snug);
 }
 
 .p{ 
   color: var(--text-muted); 
   margin: 0; 
-  line-height: 1.65; 
+  line-height: var(--leading-relaxed); 
+  font-size: var(--text-base);
 }
 
 .badge{
@@ -198,15 +243,16 @@ a:hover{
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  gap:10px;
+  gap: var(--space-2);
   border-radius: 999px;
-  padding: 10px 14px;
+  padding: var(--space-2) var(--space-4);
   border: 1px solid var(--line);
   background: rgba(255,255,255,0.02);
-  font-weight: 500;
-  font-size: 14px;
+  font-weight: var(--weight-medium);
+  font-size: var(--text-sm);
   transition: all 0.2s ease;
   color: var(--text);
+  cursor: pointer;
 }
 
 .btn:hover{ 
@@ -214,6 +260,11 @@ a:hover{
   border-color: var(--line-strong);
   text-decoration:none; 
   transform: translateY(-1px);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
 }
 
 .btn.active{
@@ -225,7 +276,7 @@ a:hover{
 hr{ 
   border:0; 
   border-top:1px solid var(--line); 
-  margin: 26px 0; 
+  margin: var(--space-6) 0; 
 }
 
 /* Typography for markdown content */
@@ -498,4 +549,54 @@ pre code{
 ::view-transition-old(root),
 ::view-transition-new(root) {
   background: var(--bg);
+}
+
+/* ==========================================
+   UTILITY CLASSES
+   ========================================== */
+
+/* Spacing Utilities */
+.mt-1 { margin-top: var(--space-1); }
+.mt-2 { margin-top: var(--space-2); }
+.mt-3 { margin-top: var(--space-3); }
+.mt-4 { margin-top: var(--space-4); }
+.mt-5 { margin-top: var(--space-5); }
+.mt-6 { margin-top: var(--space-6); }
+.mt-7 { margin-top: var(--space-7); }
+
+.mb-1 { margin-bottom: var(--space-1); }
+.mb-2 { margin-bottom: var(--space-2); }
+.mb-3 { margin-bottom: var(--space-3); }
+.mb-4 { margin-bottom: var(--space-4); }
+.mb-5 { margin-bottom: var(--space-5); }
+.mb-6 { margin-bottom: var(--space-6); }
+.mb-7 { margin-bottom: var(--space-7); }
+
+.gap-2 { gap: var(--space-2); }
+.gap-3 { gap: var(--space-3); }
+.gap-4 { gap: var(--space-4); }
+.gap-5 { gap: var(--space-5); }
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Screen reader only */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
 }

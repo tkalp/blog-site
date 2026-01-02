@@ -1,6 +1,5 @@
 ---
 import Nav from "../components/Nav.astro";
-import CursorGlow from "../components/CursorGlow.astro";
 import CardTilt from "../components/CardTilt.astro";
 import ScrollReveal from "../components/ScrollReveal.astro";
 import { ViewTransitions } from 'astro:transitions';
@@ -58,8 +57,6 @@ const ogImage = `${siteURL}/og-default.png`; // optional but recommended
 
   <body>
     <style is:global>@import "../styles/global.css";</style>
-    
-    <CursorGlow />
 
     <div class="container">
       <Nav currentPath={Astro.url.pathname} />
@@ -70,10 +67,7 @@ const ogImage = `${siteURL}/og-default.png`; // optional but recommended
 
       <hr />
 
-      <footer
-        class="kicker"
-        style="display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;"
-      >
+      <footer class="kicker footer-layout">
         <span>© {new Date().getFullYear()} Teddy Kalp</span>
         <span>
           <a href="https://github.com/tkalp" target="_blank" rel="noreferrer">GitHub</a>
@@ -89,3 +83,12 @@ const ogImage = `${siteURL}/og-default.png`; // optional but recommended
     <ScrollReveal />
   </body>
 </html>
+
+<style>
+  .footer-layout {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+  }
+</style>
