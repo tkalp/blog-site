@@ -73,14 +73,15 @@
 
 <script>
   function enhanceCodeBlocks() {
-    const preBlocks = document.querySelectorAll('article pre, main pre');
+    const preBlocks = document.querySelectorAll('article pre:not(.astro-code), main pre:not(.astro-code)');
     
     preBlocks.forEach((pre) => {
       const preElement = pre as HTMLElement;
       
-      // Skip if already enhanced or is mermaid
+      // Skip if already enhanced, is mermaid, or is inline (has no parent paragraph context)
       if (preElement.parentElement?.classList.contains('code-block-wrapper') || 
-          preElement.querySelector('.language-mermaid')) {
+          preElement.querySelector('.language-mermaid') ||
+          preElement.closest('p')) {
         return;
       }
       
@@ -88,9 +89,20 @@
       if (!code) return;
       
       const codeText = code.textContent || '';
+      
+      // Skip very short code blocks (likely inline)
+      if (codeText.trim().split('\n').length < 2) {
+        return;
+      }
+      
       const language = Array.from(code.classList)
         .find(cls => cls.startsWith('language-'))
         ?.replace('language-', '') || 'text';
+      
+      // Skip plain text, diagrams, and unlabeled blocks
+      if (!language || language === 'text' || language === 'plaintext' || language === 'txt') {
+        return;
+      }
       
       // Create wrapper
       const wrapper = document.createElement('div');

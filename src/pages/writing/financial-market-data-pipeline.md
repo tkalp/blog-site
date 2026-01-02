@@ -2,7 +2,7 @@
 layout: ../../layouts/ArticleLayout.astro
 title: Designing a Financial Market Data Pipeline
 description: EOD ingestion, corporate actions, golden prices, and deterministic recomputation.
-pubDate: "2025-12-30"
+pubDate: "2026-01-02"
 tags: ["Systems Design", "Data Pipelines", "Python"]
 ---
 
