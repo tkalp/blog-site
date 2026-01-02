@@ -222,37 +222,37 @@ As of Week 17 of the 2025 season, the V1 pipeline produces the following results
 
 ```
 Top 30 players by total impact (EPA attribution):
-rank player_name         player_id                total_epa    plays   epa/play
-   1 Drake Maye            00-0039851                +107.09    540   +0.198
-   2 Jordan Love           00-0036264                 +83.66    469   +0.178
-   3 Matthew Stafford      00-0026498                 +83.07    579   +0.143
-   4 Dak Prescott          00-0033077                 +75.74    627   +0.121
-   5 Josh Allen            00-0034857                 +72.87    548   +0.133
-   6 Jared Goff            00-0033106                 +67.59    573   +0.118
-   7 Brock Purdy           00-0037834                 +61.93    279   +0.222
-   8 Daniel Jones          00-0035710                 +51.96    423   +0.123
-   9 Patrick Mahomes       00-0033873                 +51.19    540   +0.095
-  10 Sam Darnold           00-0034869                 +41.06    480   +0.086
-  11 Bo Nix                00-0039732                 +40.91    642   +0.064
-  12 Puka Nacua            00-0039075                 +39.10    163   +0.240
-  13 Joe Burrow            00-0036442                 +33.83    240   +0.141
-  14 C.J. Stroud           00-0039163                 +32.52    433   +0.075
-  15 Mac Jones             00-0036972                 +32.16    318   +0.101
-  16 George Pickens        00-0037247                 +27.76    135   +0.206
-  17 Trevor Lawrence       00-0036971                 +27.24    599   +0.045
-  18 Jalen Hurts           00-0036389                 +27.19    538   +0.051
-  19 Malik Willis          00-0038128                 +26.93     45   +0.598
-  20 Caleb Williams        00-0039918                 +26.35    579   +0.046
-  21 Jonathan Taylor       00-0036223                 +26.19    363   +0.072
-  22 Jaxon Smith-Njigba    00-0038543                 +25.49    162   +0.157
-  23 Trey McBride          00-0037744                 +21.35    162   +0.132
-  24 Stefon Diggs          00-0031588                 +20.39     99   +0.206
-  25 AJ Barner             00-0039793                 +15.83     75   +0.211
-  26 DeVonta Smith         00-0036912                 +15.81    110   +0.144
-  27 Amon-Ra St. Brown     00-0036963                 +15.46    160   +0.097
-  28 D'Andre Swift         00-0036275                 +14.35    259   +0.055
-  29 Nico Collins          00-0036554                 +13.79    123   +0.112
-  30 Jameson Williams      00-0037240                 +13.74    100   +0.137
+rank player_name          role         total_epa    plays   epa/play
+   1 Drake Maye           QB           +107.09    540   +0.198
+   2 Jordan Love          QB            +83.66    469   +0.178
+   3 Matthew Stafford     QB            +83.07    579   +0.143
+   4 Dak Prescott         QB            +75.74    627   +0.121
+   5 Josh Allen           QB            +72.87    548   +0.133
+   6 Jared Goff           QB            +67.59    573   +0.118
+   7 Brock Purdy          QB            +61.93    279   +0.222
+   8 Daniel Jones         QB            +51.96    423   +0.123
+   9 Patrick Mahomes      QB            +51.19    540   +0.095
+  10 Sam Darnold          QB            +41.06    480   +0.086
+  11 Bo Nix               QB            +40.91    642   +0.064
+  12 Puka Nacua           WR            +39.10    163   +0.240
+  13 Joe Burrow           QB            +33.83    240   +0.141
+  14 C.J. Stroud          QB            +32.52    433   +0.075
+  15 Mac Jones            QB            +32.16    318   +0.101
+  16 George Pickens       WR            +27.76    135   +0.206
+  17 Trevor Lawrence      QB            +27.24    599   +0.045
+  18 Jalen Hurts          QB            +27.19    538   +0.051
+  19 Malik Willis         RUSHER        +26.93     45   +0.598
+  20 Caleb Williams       QB            +26.35    579   +0.046
+  21 Jonathan Taylor      RUSHER        +26.19    363   +0.072
+  22 Jaxon Smith-Njigba   WR            +25.49    162   +0.157
+  23 Trey McBride         WR            +21.35    162   +0.132
+  24 Stefon Diggs         WR            +20.39     99   +0.206
+  25 AJ Barner            WR            +15.83     75   +0.211
+  26 DeVonta Smith        WR            +15.81    110   +0.144
+  27 Amon-Ra St. Brown    WR            +15.46    160   +0.097
+  28 D'Andre Swift        WR            +14.35    259   +0.055
+  29 Nico Collins         WR            +13.79    123   +0.112
+  30 Jameson Williams     RUSHER        +13.74    100   +0.137
 ```
 
 ### Interpreting These Results
